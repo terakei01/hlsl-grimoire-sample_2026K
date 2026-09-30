@@ -1,4 +1,8 @@
+
+
+//入力される頂点データ構造を定義
 // 頂点シェーダーへの入力頂点構造体
+//頂点のデータ
 struct VSInput
 {
     float4 pos : POSITION;
@@ -13,21 +17,25 @@ struct VSOutput
 // 頂点シェーダー
 // 1. 引数は変換前の頂点情報
 // 2. 戻り値は変換後の頂点情報
+//座標の変換をする
 VSOutput VSMain(VSInput In)
 {
-    VSOutput vsOut = (VSOutput)0;
+    VSOutput vsOut = (VSOutput) 0;
 
     // step-1 入力された頂点座標を出力データに代入する
-
+    //Inというのは頂点情報
+    vsOut.pos = In.pos;
     // step-2 入力された頂点座標を2倍に拡大する
-
+    //vsOut.pos.x *= 2.0f;
+    //vsOut.pos.y *= 2.0f;
     // step-3 入力されたX座標を1.5倍、Y座標を0.5倍にして出力
 
     return vsOut;
 }
 
+//座標変換したものに対して色を付ける
 // ピクセルシェーダー
 float4 PSMain(VSOutput vsOut) : SV_Target0
 {
-    return float4(1.0f, 0.0f, 0.0f, 1.0f);
+    return float4(0.0f, 0.0f, 0.0f, 0.0f);
 }
