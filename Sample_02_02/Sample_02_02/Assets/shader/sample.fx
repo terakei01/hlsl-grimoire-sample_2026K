@@ -15,26 +15,43 @@ struct VSOutput
 // 頂点シェーダー
 // 1. 引数は変換前の頂点情報
 // 2. 戻り値は変換後の頂点情報
+//スクリーン座標に変換
 VSOutput VSMain(VSInput In)
 {
-    VSOutput vsOut = (VSOutput)0;
+    VSOutput vsOut = (VSOutput) 0;
     vsOut.pos = In.pos;
     vsOut.color = In.color; // カラーの情報を出力する
     return vsOut;
 }
 
 // ピクセルシェーダー
+//ピクセルの数だけ呼ばれる
 float4 PSMain(VSOutput vsOut) : SV_Target0
 {
     // 赤色を出力している
-    return float4(1.0f, 0.0f , 0.0f, 1.0f);
+    //return float4(1.0f, 0.0f , 0.0f, 1.0f);
 
     // step-1 三角形を青色にする
+    //return float4(0.0f, 0.0f, 1.0f, 1.0f);
 
     // step-2 三角形を緑色にする
+    //return float4(1.0f, 1.0f, 0.0f, 1.0f);
 
     // step-3 三角形を黄色にする
+    //return float4(1.0f, 1.0f, 0.0f, 1.0f);
 
     // step-4 頂点シェーダーから受け取ったカラーを出力する
-
+    float4 color;
+    //color.x = vsOut.pos % 20.27f;
+    //color.x = color.x * 0.1f;
+    color.x = vsOut.pos % 2.27;
+    color.x = step(0.5f, color.x);
+    //color.z = step(0.3f, vsOut.color.z);
+    //color.x = vsOut.color.x;
+    //color.y = vsOut.color.y;
+    //color.z = vsOut.color.z;
+    //color.y = 1, 1, 1, 1;
+    //color.z = 1, 1, 1, 1;
+    color.w = 1.0f; //A
+    return color;
 }
